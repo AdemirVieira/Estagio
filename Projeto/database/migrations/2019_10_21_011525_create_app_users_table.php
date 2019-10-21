@@ -13,8 +13,14 @@ class CreateAppUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('app__users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('app_users', function (Blueprint $table) {
+            $table->unsignedBigInteger('app_id');
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('app_id')->references('id')->on('apps');
+            $table->foreign('user_id')->references('id')->on('users');
+            
+            $table->primary(['app_id','user_id']);
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreateAppUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('app__users');
+        Schema::dropIfExists('app_users');
     }
 }
