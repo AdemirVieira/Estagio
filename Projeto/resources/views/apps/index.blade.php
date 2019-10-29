@@ -4,7 +4,7 @@
 
 @section('content')
 <div>
-    <a class="btn btn-primary active" href="{{ route('apps.create') }}">    
+    <a class="btn btn-primary active" style="margin-bottom: 0.5rem;" href="{{ route('apps.create') }}">    
         Adicionar
     </a>
 </div>
