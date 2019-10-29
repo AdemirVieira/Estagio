@@ -12,8 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::resource('apps', 'AppController');
+
+Route::resource('teachers', 'TeacherController');
 
 Auth::routes();
 
