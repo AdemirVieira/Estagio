@@ -38,6 +38,7 @@ class AppController extends Controller
     {
         $m = new app();
         $m->name = $request->name;
+        $m->description = $request->description;
         $m->save();
 
         return redirect()->route('apps.index');
