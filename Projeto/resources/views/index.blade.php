@@ -1,7 +1,7 @@
 @extends('layout.app')
 
-@section('title','Minha Pagina')
+@section('title','Home')
 
 @section('content')
-<h1>Minha Pagina</h1>
+<h1>Gerenciamento de usuários e permissões</h1>
 @endsection
