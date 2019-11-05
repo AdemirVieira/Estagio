@@ -17,8 +17,8 @@ class CreateAppUsersTable extends Migration
             $table->unsignedBigInteger('app_id');
             $table->unsignedBigInteger('user_id');
 
-            $table->foreign('app_id')->references('id')->on('apps');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('app_id')->references('id')->on('apps')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             
             $table->primary(['app_id','user_id']);
             $table->timestamps();

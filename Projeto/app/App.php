@@ -11,6 +11,6 @@ class App extends Model
     ];
     
     public function users(){
-        return $this->hasManyThrough('App\User');
+        return $this->belongsToMany('App\User','app_users');
     }
 }

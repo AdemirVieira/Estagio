@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\App;
+use App\User;
 
 class AppController extends Controller
 {
@@ -25,7 +26,8 @@ class AppController extends Controller
      */
     public function create()
     {
-        return view('apps.create');
+        $users = user::all();
+        return view('apps.create', compact(['users']));
     }
 
     /**
@@ -39,9 +41,14 @@ class AppController extends Controller
         $m = new app();
         $m->name = $request->name;
         $m->description = $request->description;
+        $m->users()->attach($request->users);
         $m->save();
 
         return redirect()->route('apps.index');
+
+    
+        $p->departamentos()->attach($request->departamentos);
+        return redirect()->route('produtos.index');
     }
 
     /**
@@ -50,9 +57,9 @@ class AppController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(App $app)
     {
-        //
+        return view('apps.show', compact(['app']));
     }
 
     /**
@@ -81,6 +88,7 @@ class AppController extends Controller
         $app = app::find($id);
         if (isset ($app)) {
             $app->name = $request->name;
+            $app->description = $request->description;
             $app->save();
         }
         return redirect()->route('apps.index');

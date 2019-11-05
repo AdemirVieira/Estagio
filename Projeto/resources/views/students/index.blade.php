@@ -1,10 +1,10 @@
 @extends('layout.app')
 
-@section('title','Apps')
+@section('title','Students')
 
 @section('content')
 <div>
-    <a class="btn btn-primary active" style="margin-bottom: 0.5rem;" href="{{ route('apps.create') }}">    
+    <a class="btn btn-primary active" style="margin-bottom: 0.5rem;" href="{{ route('students.create') }}">    
         Adicionar
     </a>
 </div>
@@ -15,23 +15,23 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
                 <th scope="col">Ações</th>
             </tr>
             </thead>
             <tbody>
-            @foreach ($apps as $app)
+            @foreach ($students as $student)
                 <tr>
-                    <th scope="row">{{  $app->id }}</th>
-                    <td>{{  $app->name }}</td>
+                    <th scope="row">{{  $student->id }}</th>
+                    <td>{{  $student->cpf }}</td>
                     <td>
-                        <form action="{{ route('apps.destroy', $app->id) }}" method="POST"
-                            onsubmit="return confirm('Realmente deseja apagar esta aplicação?');">
+                        <form action="{{ route('students.destroy', $student->id) }}" method="POST"
+                            onsubmit="return confirm('Realmente deseja apagar este aluno?');">
                             @method('DELETE')
                             @csrf
 
 
-                            <a class="btn btn-sm btn-info active" href="{{route('apps.edit', $app->id)}}">
+                            <a class="btn btn-sm btn-info active" href="{{route('students.edit', $student->id)}}">
                                 Editar
                             </a>                           
 
@@ -39,7 +39,7 @@
                                 Apagar
                             </button>
 
-                            <a class="btn btn-sm btn-info active" href="{{route('apps.show', $app->id)}}">
+                            <a class="btn btn-sm btn-info active" href="{{route('students.show', $student->id)}}">
                                 Detalhes
                             </a> 
 
@@ -52,7 +52,6 @@
             </tbody>
         </table>
 </div>
-
 
 
 

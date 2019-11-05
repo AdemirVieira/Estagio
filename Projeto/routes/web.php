@@ -15,9 +15,15 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::resource('users', 'UserController');
+
 Route::resource('apps', 'AppController');
 
 Route::resource('teachers', 'TeacherController');
+
+Route::resource('students', 'StudentController');
+
+Route::resource('technicians', 'TechnicianController');
 
 Auth::routes();
 

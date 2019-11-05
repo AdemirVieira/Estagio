@@ -1,10 +1,10 @@
 @extends('layout.app')
 
-@section('title','Apps')
+@section('title','Users')
 
 @section('content')
 <div>
-    <a class="btn btn-primary active" style="margin-bottom: 0.5rem;" href="{{ route('apps.create') }}">    
+    <a class="btn btn-primary active" style="margin-bottom: 0.5rem;" href="{{ route('users.create') }}">    
         Adicionar
     </a>
 </div>
@@ -20,18 +20,17 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($apps as $app)
+            @foreach ($users as $user)
                 <tr>
-                    <th scope="row">{{  $app->id }}</th>
-                    <td>{{  $app->name }}</td>
+                    <th scope="row">{{  $user->id }}</th>
+                    <td>{{  $user->name }}</td>
                     <td>
-                        <form action="{{ route('apps.destroy', $app->id) }}" method="POST"
-                            onsubmit="return confirm('Realmente deseja apagar esta aplicação?');">
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                            onsubmit="return confirm('Realmente deseja apagar este usuário?');">
                             @method('DELETE')
                             @csrf
 
-
-                            <a class="btn btn-sm btn-info active" href="{{route('apps.edit', $app->id)}}">
+                            <a class="btn btn-sm btn-info active" href="{{route('users.edit', $user->id)}}">
                                 Editar
                             </a>                           
 
@@ -39,20 +38,17 @@
                                 Apagar
                             </button>
 
-                            <a class="btn btn-sm btn-info active" href="{{route('apps.show', $app->id)}}">
-                                Detalhes
-                            </a> 
-
                         </form>
                     </td>
                 </tr>
             @endforeach
+
+            
             
             
             </tbody>
         </table>
 </div>
-
 
 
 
