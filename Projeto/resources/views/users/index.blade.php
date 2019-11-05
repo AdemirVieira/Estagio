@@ -38,6 +38,10 @@
                                 Apagar
                             </button>
 
+                            <a class="btn btn-sm btn-info active" href="#">
+                                Detalhes
+                            </a> 
+
                         </form>
                     </td>
                 </tr>

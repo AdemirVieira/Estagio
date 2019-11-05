@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Student;
+use App\User;
 
 class StudentController extends Controller
 {
@@ -25,7 +26,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        $users = user::all();
+        return view('students.create', compact(['users']));
     }
 
     /**
@@ -41,6 +43,15 @@ class StudentController extends Controller
         $m->data_nascimento = $request->data_nascimento;
         $m->cpf = $request->cpf;
         $m->telefone = $request->telefone;
+
+        $u = new User();
+        $u->name = $request->name;
+        $u->email = $request->email;
+        $u->password = Hash::make($m->cpf);
+        $u->save();
+
+        $m->user_id = $u->id;
+
         $m->save();
 
         return redirect()->route('students.index');
