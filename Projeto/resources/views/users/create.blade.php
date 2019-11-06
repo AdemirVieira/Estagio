@@ -16,6 +16,11 @@
         aria-describedby="user"  name="email"
         placeholder="E-mail">
 
+        <label for="password">Senha</label>
+        <input type="password" class="form-control" id="password" 
+        aria-describedby="user"  name="password"
+        placeholder="Senha">
+
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>

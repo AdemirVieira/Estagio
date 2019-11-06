@@ -17,10 +17,9 @@
         aria-describedby="user"  name="email"
         placeholder="E-mail">
 
-        <label for="sexo">Sexo</label>
-        <input type="text" class="form-control" id="sexo" 
-        aria-describedby="student"  name="sexo"
-        placeholder="Sexo">
+        <label for="sexo">Sexo</label><br>
+        <input type="radio" name="sexo" value="Masculino"> Masculino <br>
+        <input type="radio" name="sexo" value="Feminino" > Feminino  <br>
 
         <label for="data_nascimento">Data de Nascimento</label>
         <input type="date" class="form-control" id="data_nascimento" 
@@ -36,7 +35,7 @@
         <input type="text" class="form-control" id="telefone" 
         aria-describedby="student"  name="telefone"
         placeholder="Telefone">
-        
+
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
