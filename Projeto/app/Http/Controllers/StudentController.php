@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Student;
 use App\User;
 
@@ -16,7 +17,8 @@ class StudentController extends Controller
     public function index()
     {
         $students = student::all();
-        return view('students.index',compact('students'));
+        $users = user::all();
+        return view('students.index',compact(['students','users']));
     }
 
     /**
@@ -38,22 +40,19 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $m = new student();
-        $m->sexo = $request->sexo;
-        $m->data_nascimento = $request->data_nascimento;
-        $m->cpf = $request->cpf;
-        $m->telefone = $request->telefone;
-
-        $u = new User();
+        $s = new student();
+        $u = new user();
         $u->name = $request->name;
         $u->email = $request->email;
-        $u->password = Hash::make($m->cpf);
+        $u->password = Hash::make($request->password);
+        $s->sexo = $request->sexo;
+        $s->data_nascimento = $request->data_nascimento;
+        $s->cpf = $request->cpf;
+        $s->telefone = $request->telefone;
         $u->save();
-
-        $m->user_id = $u->id;
-
-        $m->save();
-
+        $s->user_id = $u->id;
+        $s->save();
+        
         return redirect()->route('students.index');
     }
 
@@ -63,9 +62,10 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(student $student)
+    {   
+        $user = user::find($student->user_id);
+        return view('students.show', compact(['student','user']));
     }
 
     /**
@@ -76,8 +76,9 @@ class StudentController extends Controller
      */
     public function edit(student $student)
     {
+        $user = user::find($student->user_id);
         if (isset($student)) {
-            return view('students.edit', compact(['student']));
+            return view('students.edit', compact(['student','user']));
         }
         return redirect()->route('students.index');
     }
@@ -92,11 +93,16 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $student = student::find($id);
+        $u = user::find($student->user_id);
         if (isset ($student)) {
+            $u->name = $request->name;
+            $u->email = $request->email;
+            $u->password = Hash::make($request->password);
             $student->sexo = $request->sexo;
             $student->data_nascimento = $request->data_nascimento;
             $student->cpf = $request->cpf;
             $student->telefone = $request->telefone;
+            $u->save();
             $student->save();
         }
         return redirect()->route('students.index');
@@ -110,8 +116,9 @@ class StudentController extends Controller
      */
     public function destroy(student $student)
     {
+        $u = user::find($student->user_id);
         if (isset ($student)) {
-            $student->delete();
+            $u->delete();
         }
         return redirect()->route('students.index');
         

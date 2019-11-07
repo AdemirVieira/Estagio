@@ -29,7 +29,7 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
+        <a class="nav-link" href="{{ route('users.index') }}">Usuários</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('apps.index') }}">Aplicações</a>
@@ -41,7 +41,7 @@
         <a class="nav-link" href="{{ route('students.index') }}">Alunos</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('technicians.index') }}">Tecnicos</a>
+      <a class="nav-link" href="{{ route('technicians.index') }}">Técnicos</a>
   </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
