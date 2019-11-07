@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\App;
+use App\Student;
+use App\Technician;
+use App\Teacher;
 
 class UserController extends Controller
 {
@@ -48,12 +51,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(user $user)        //***************FAZER*****************
+    public function show(user $user)
     {   
-        //$user = user::find($technician->user_id);
-        //return view('students.show', compact(['student','user']));
-        //return view('teachers.show', compact(['teacher','user']));
-        //return view('technicians.show', compact(['technician','user']));
+        $students = Student::all();
+        $teachers = Teacher::all();
+        $technicians = Technician::all();
+
+        foreach($students as $student){
+            if($student->user_id == $user->id){
+                return view('students.show', compact(['student','user']));
+            }
+        }
+        foreach($teachers as $teacher){
+            if($teacher->user_id == $user->id){
+                return view('teachers.show', compact(['teacher','user']));
+            }
+        }
+        foreach($technicians as $technician){
+            if($technician->user_id == $user->id){
+                return view('technicians.show', compact(['technician','user']));
+            }
+        }
     }
 
     /**
@@ -62,12 +80,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(user $user)        //***************FAZER*****************
+    public function edit(user $user)
     {
-        //if (isset($user)) {
-            //return view('users.edit', compact(['user']));
-        //}
-       //return redirect()->route('users.index');
+        $students = Student::all();
+        $teachers = Teacher::all();
+        $technicians = Technician::all();
+
+        foreach($students as $student){
+            if($student->user_id == $user->id){
+                return view('students.edit', compact(['student','user']));
+            }
+        }
+        foreach($teachers as $teacher){
+            if($teacher->user_id == $user->id){
+                return view('teachers.edit', compact(['teacher','user']));
+            }
+        }
+        foreach($technicians as $technician){
+            if($technician->user_id == $user->id){
+                return view('technicians.edit', compact(['technician','user']));
+            }
+        }
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\technician;
+use App\Technician;
 use App\User;
 
 class TechnicianController extends Controller

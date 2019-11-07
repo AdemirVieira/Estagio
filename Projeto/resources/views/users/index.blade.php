@@ -35,7 +35,6 @@
 
                             <a class="btn btn-sm btn-info active" href="{{route('users.edit', $user->id)}}">
                                 Editar
-                                <!-- Quando clicar nesse botão redirecionar para a edit.blade.php deste tipo de usuário especifico (aluno, professor ou tecnico) -->
                             </a>                           
 
                             <button type="submit" class="btn btn-danger btn-sm">
