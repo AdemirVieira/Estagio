@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title','Apps')
+@section('title','Aplicações')
 
 @section('content')
 <div>
@@ -14,9 +14,9 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Ações</th>
+                <th scope="col">ID</th>
+                <th scope="col">NOME</th>
+                <th scope="col">OPÇÕES</th>
             </tr>
             </thead>
             <tbody>

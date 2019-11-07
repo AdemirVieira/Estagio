@@ -24,10 +24,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create()              //***************FAZER*****************
     {
-        $apps = app::all();
-        return view('users.create', compact(['apps']));
+        //$apps = app::all();
+        //return view('users.create', compact(['apps']));
+        // ou return redirect()->route('users.index');
     }
 
     /**
@@ -38,13 +39,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $m = new user();
-        $m->name = $request->name;
-        $m->email = $request->email;
-        $m->password = $request->password;
-        $m->save();
-
-        return redirect()->route('users.index');
+        //
     }
 
     /**
@@ -53,9 +48,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(user $user)        //***************FAZER*****************
+    {   
+        //$user = user::find($technician->user_id);
+        //return view('students.show', compact(['student','user']));
+        //return view('teachers.show', compact(['teacher','user']));
+        //return view('technicians.show', compact(['technician','user']));
     }
 
     /**
@@ -64,12 +62,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(user $user)
+    public function edit(user $user)        //***************FAZER*****************
     {
-        if (isset($user)) {
-            return view('users.edit', compact(['user']));
-        }
-        return redirect()->route('users.index');
+        //if (isset($user)) {
+            //return view('users.edit', compact(['user']));
+        //}
+       //return redirect()->route('users.index');
     }
 
     /**
@@ -81,14 +79,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = user::find($id);
-        if (isset ($user)) {
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = $request->password;
-            $user->save();
-        }
-        return redirect()->route('users.index');
+        //
     }
 
     /**

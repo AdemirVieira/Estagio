@@ -1,7 +1,16 @@
-<ul>
-    <li>ID: {{$app->id}}</li>
-    <li>Nome: {{$app->name}}</li>
-    <li>Descrição: {{$app->description}}</li>
-</ul>
-    
-<a href="{{ route('apps.index') }}">Voltar</a>
+@extends('layout.app')
+
+@section('title','Detalhes da Aplicação')
+
+@section('content')
+    <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" class="form-control" id="name" 
+        aria-describedby="app"  name="name" value="{{ $app->name }}" disabled>
+
+        <label for="description">Descrição</label>
+        <input type="text" class="form-control" id="description" 
+        aria-describedby="app"  name="description" value="{{ $app->description }}" disabled>
+        
+    </div>
+@endsection

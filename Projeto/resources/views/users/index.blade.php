@@ -1,20 +1,23 @@
 @extends('layout.app')
 
-@section('title','Users')
+@section('title','Usuários')
 
 @section('content')
+
 <div>
-    <a class="btn btn-primary active" style="margin-bottom: 0.5rem;" href="{{ route('users.create') }}">    
+    <a id="tipo" class="btn btn-primary active" style="margin-bottom: 0.5rem;" href="{{ route('users.create') }}">    
         Adicionar
+        <!-- No controller eu retorno uma janela peguntando se é Aluno, Professor ou Técnico. Após selecionar eu redireciono para
+        create.blade.php deste tipo de usuário especifico (aluno, professor ou tecnico) -->
     </a>
 </div>
-
+    
 <div>
 
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">ID</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Ações</th>
             </tr>
@@ -32,15 +35,23 @@
 
                             <a class="btn btn-sm btn-info active" href="{{route('users.edit', $user->id)}}">
                                 Editar
+                                <!-- Quando clicar nesse botão redirecionar para a edit.blade.php deste tipo de usuário especifico (aluno, professor ou tecnico) -->
                             </a>                           
 
                             <button type="submit" class="btn btn-danger btn-sm">
                                 Apagar
                             </button>
 
-                            <a class="btn btn-sm btn-info active" href="#">
-                                Detalhes
+                            <a class="btn btn-sm btn-info active" href="{{route('users.show', $user->id)}}">
+                                Detalhes 
+                                <!-- Quando clicar nesse botão redirecionar para a show.blade.php deste tipo de usuário especifico (aluno, professor ou tecnico) e
+                                na show dele exibir a aplicação que ele esta vinculado (tenho que criar essa parte na show de cada usuario) -->
                             </a> 
+
+                            
+                            <a class="btn btn-sm btn-info active" href="#">
+                                Gerenciar<!-- Botão para atribuir aplicações e modificar papeis -->
+                            </a>     
 
                         </form>
                     </td>
