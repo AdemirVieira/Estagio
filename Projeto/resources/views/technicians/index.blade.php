@@ -1,10 +1,10 @@
 @extends('layout.app')
 
-@section('title','Alunos')
+@section('title','Técnicos')
 
 @section('content')
 <div>
-    <a class="btn btn-primary active" style="margin-bottom: 0.5rem;" href="{{ route('students.create') }}">    
+    <a class="btn btn-primary active" style="margin-bottom: 0.5rem;" href="{{ route('technicians.create') }}">    
         Adicionar
     </a>
 </div>
@@ -21,26 +21,26 @@
         </thead>
         
         <tbody>
-            @foreach ($students as $student)
+            @foreach ($technicians as $technician)
                 <tr>
-                    <th scope="row">{{  $student->id }}</th>
+                    <th scope="row">{{  $technician->id }}</th>
 
                     <td>
                         @foreach($users as $user)
-                            @if($user->id == $student->user_id)
+                            @if($user->id == $technician->user_id)
                                 {{ $user->name }}
                             @endif
                         @endforeach
                     </td>
 
                     <td>
-                        <form action="{{ route('students.destroy', $student->id) }}" method="POST"
+                        <form action="{{ route('technicians.destroy', $technician->id) }}" method="POST"
                             onsubmit="return confirm('Realmente deseja apagar este aluno?');">
                             @method('DELETE')
                             @csrf
 
 
-                            <a class="btn btn-sm btn-info active" href="{{route('students.edit', $student->id)}}">
+                            <a class="btn btn-sm btn-info active" href="{{route('technicians.edit', $technician->id)}}">
                                 Editar
                             </a>                           
 
@@ -48,7 +48,7 @@
                                 Apagar
                             </button>
 
-                            <a class="btn btn-sm btn-info active" href="{{route('students.show', $student->id)}}">
+                            <a class="btn btn-sm btn-info active" href="{{route('technicians.show', $technician->id)}}">
                                 Detalhes
                             </a> 
 

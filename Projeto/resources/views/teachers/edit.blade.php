@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title','Alunos')
+@section('title','Professores')
 
 @section('content')
 
@@ -14,7 +14,7 @@
     }
 </script>
 
-<form method="POST" action="{{ route('students.update', $student->id) }}">
+<form method="POST" action="{{ route('teachers.update', $teacher->id) }}">
     @csrf
     @method('PUT')
     <div class="form-group">
@@ -32,7 +32,7 @@
         aria-describedby="user"  name="password">
 
         <label for="sexo">Sexo</label><br>
-        @if ($student->sexo=="Masculino")
+        @if ($teacher->sexo=="Masculino")
             <input type="radio" name="sexo" value="Masculino" id="maculino" checked> Masculino <br>
             <input type="radio" name="sexo" value="Feminino"  id="feminino">         Feminino  <br>
         @else
@@ -42,16 +42,16 @@
         
         <label for="data_nascimento">Data de Nascimento</label>
         <input type="date" class="form-control" id="data_nascimento" 
-        aria-describedby="student"  name="data_nascimento" value="{{ $student->data_nascimento }}">
+        aria-describedby="teacher"  name="data_nascimento" value="{{ $teacher->data_nascimento }}">
 
         <label for="cpf">CPF</label>
         <input type="text" class="form-control" id="cpf" 
-        aria-describedby="student"  name="cpf" value="{{ $student->cpf }}"
+        aria-describedby="teacher"  name="cpf" value="{{ $teacher->cpf }}"
         placeholder="XXX.XXX.XXX-XX" onkeypress="formatar_mascara(this,'###.###.###-##')">
 
         <label for="telefone">Telefone</label>
         <input type="text" class="form-control" id="telefone" 
-        aria-describedby="student"  name="telefone" value="{{ $student->telefone }}"
+        aria-describedby="teacher"  name="telefone" value="{{ $teacher->telefone }}"
         placeholder="XX-XXXXX-XXXX" onkeypress="formatar_mascara(this,'##-#####-####')">
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>

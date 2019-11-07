@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title','Alunos')
+@section('title','Técnicos')
 
 @section('content')
 
@@ -14,7 +14,7 @@
     }
 </script>
 
-<form method="POST" action="{{ route('students.store') }}">
+<form method="POST" action="{{ route('technicians.store') }}">
     @csrf
     <div class="form-group">
 
@@ -37,16 +37,16 @@
 
         <label for="data_nascimento">Data de Nascimento</label>
         <input type="date" class="form-control" id="data_nascimento" 
-        aria-describedby="student"  name="data_nascimento">
+        aria-describedby="technician"  name="data_nascimento">
 
         <label for="cpf">CPF</label>
         <input type="text" class="form-control" id="cpf" 
-        aria-describedby="student"  name="cpf"
+        aria-describedby="technician"  name="cpf"
         placeholder="XXX.XXX.XXX-XX" onkeypress="formatar_mascara(this,'###.###.###-##')">
 
         <label for="telefone">Telefone</label>
         <input type="text" class="form-control" id="telefone" 
-        aria-describedby="student"  name="telefone"
+        aria-describedby="technician"  name="telefone"
         placeholder="XX-XXXXX-XXXX" onkeypress="formatar_mascara(this,'##-#####-####')">
 
     </div>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Teacher;
+use App\User;
 
 class TeacherController extends Controller
 {
@@ -14,7 +16,9 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        $teachers = teacher::all();
+        $users = user::all();
+        return view('teachers.index',compact(['teachers','users']));
     }
 
     /**
@@ -24,7 +28,8 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        $users = user::all();
+        return view('teachers.create', compact(['users']));
     }
 
     /**
@@ -35,7 +40,20 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $t = new teacher();
+        $u = new user();
+        $u->name = $request->name;
+        $u->email = $request->email;
+        $u->password = Hash::make($request->password);
+        $t->sexo = $request->sexo;
+        $t->data_nascimento = $request->data_nascimento;
+        $t->cpf = $request->cpf;
+        $t->telefone = $request->telefone;
+        $u->save();
+        $t->user_id = $u->id;
+        $t->save();
+        
+        return redirect()->route('teachers.index');
     }
 
     /**
@@ -44,9 +62,10 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(teacher $teacher)
+    {   
+        $user = user::find($teacher->user_id);
+        return view('teachers.show', compact(['teacher','user']));
     }
 
     /**
@@ -55,9 +74,13 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(teacher $teacher)
     {
-        //
+        $user = user::find($teacher->user_id);
+        if (isset($teacher)) {
+            return view('teachers.edit', compact(['teacher','user']));
+        }
+        return redirect()->route('teachers.index');
     }
 
     /**
@@ -69,7 +92,20 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $teacher = teacher::find($id);
+        $u = user::find($teacher->user_id);
+        if (isset ($teacher)) {
+            $u->name = $request->name;
+            $u->email = $request->email;
+            $u->password = Hash::make($request->password);
+            $teacher->sexo = $request->sexo;
+            $teacher->data_nascimento = $request->data_nascimento;
+            $teacher->cpf = $request->cpf;
+            $teacher->telefone = $request->telefone;
+            $u->save();
+            $teacher->save();
+        }
+        return redirect()->route('teachers.index');
     }
 
     /**
@@ -78,8 +114,13 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(teacher $teacher)
     {
-        //
+        $u = user::find($teacher->user_id);
+        if (isset ($teacher)) {
+            $u->delete();
+        }
+        return redirect()->route('teachers.index');
+        
     }
 }

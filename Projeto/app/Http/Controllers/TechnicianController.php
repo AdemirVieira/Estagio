@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Technician;
+use Illuminate\Support\Facades\Hash;
+use App\technician;
+use App\User;
 
 class TechnicianController extends Controller
 {
@@ -14,7 +16,9 @@ class TechnicianController extends Controller
      */
     public function index()
     {
-        //
+        $technicians = technician::all();
+        $users = user::all();
+        return view('technicians.index',compact(['technicians','users']));
     }
 
     /**
@@ -24,7 +28,8 @@ class TechnicianController extends Controller
      */
     public function create()
     {
-        //
+        $users = user::all();
+        return view('technicians.create', compact(['users']));
     }
 
     /**
@@ -35,7 +40,20 @@ class TechnicianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $t = new technician();
+        $u = new user();
+        $u->name = $request->name;
+        $u->email = $request->email;
+        $u->password = Hash::make($request->password);
+        $t->sexo = $request->sexo;
+        $t->data_nascimento = $request->data_nascimento;
+        $t->cpf = $request->cpf;
+        $t->telefone = $request->telefone;
+        $u->save();
+        $t->user_id = $u->id;
+        $t->save();
+        
+        return redirect()->route('technicians.index');
     }
 
     /**
@@ -44,9 +62,10 @@ class TechnicianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(technician $technician)
+    {   
+        $user = user::find($technician->user_id);
+        return view('technicians.show', compact(['technician','user']));
     }
 
     /**
@@ -55,9 +74,13 @@ class TechnicianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(technician $technician)
     {
-        //
+        $user = user::find($technician->user_id);
+        if (isset($technician)) {
+            return view('technicians.edit', compact(['technician','user']));
+        }
+        return redirect()->route('technicians.index');
     }
 
     /**
@@ -69,7 +92,20 @@ class TechnicianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $technician = technician::find($id);
+        $u = user::find($technician->user_id);
+        if (isset ($technician)) {
+            $u->name = $request->name;
+            $u->email = $request->email;
+            $u->password = Hash::make($request->password);
+            $technician->sexo = $request->sexo;
+            $technician->data_nascimento = $request->data_nascimento;
+            $technician->cpf = $request->cpf;
+            $technician->telefone = $request->telefone;
+            $u->save();
+            $technician->save();
+        }
+        return redirect()->route('technicians.index');
     }
 
     /**
@@ -78,8 +114,13 @@ class TechnicianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(technician $technician)
     {
-        //
+        $u = user::find($technician->user_id);
+        if (isset ($technician)) {
+            $u->delete();
+        }
+        return redirect()->route('technicians.index');
+        
     }
 }

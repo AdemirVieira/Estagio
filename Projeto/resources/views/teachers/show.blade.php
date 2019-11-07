@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title','Alunos')
+@section('title','Professores')
 
 @section('content')
     <div class="form-group">
@@ -13,7 +13,7 @@
         aria-describedby="user"  name="email" value="{{ $user->email }}" disabled>
 
         <label for="sexo">Sexo</label><br>
-        @if ($student->sexo=="Masculino")
+        @if ($teacher->sexo=="Masculino")
             <input type="radio" name="sexo" value="Masculino" id="maculino" checked disabled> Masculino <br>
             <input type="radio" name="sexo" value="Feminino"  id="feminino" disabled>         Feminino  <br>
         @else
@@ -23,14 +23,14 @@
         
         <label for="data_nascimento">Data de Nascimento</label>
         <input type="date" class="form-control" id="data_nascimento" 
-        aria-describedby="student"  name="data_nascimento" value="{{ $student->data_nascimento }}" disabled>
+        aria-describedby="teacher"  name="data_nascimento" value="{{ $teacher->data_nascimento }}" disabled>
 
         <label for="cpf">CPF</label>
         <input type="text" class="form-control" id="cpf" 
-        aria-describedby="student"  name="cpf" value="{{ $student->cpf }}" disabled>
+        aria-describedby="teacher"  name="cpf" value="{{ $teacher->cpf }}" disabled>
 
         <label for="telefone">Telefone</label>
         <input type="text" class="form-control" id="telefone" 
-        aria-describedby="student"  name="telefone" value="{{ $student->telefone }}" disabled>
+        aria-describedby="teacher"  name="telefone" value="{{ $teacher->telefone }}" disabled>
     </div>
 @endsection
