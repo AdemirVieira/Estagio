@@ -21,33 +21,33 @@
         <label for="name">Nome</label>
         <input type="text" class="form-control" id="name" 
         aria-describedby="user"  name="name"
-        placeholder="Nome completo">
+        placeholder="Nome completo" required>
 
         <label for="email">E-mail</label>
         <input type="email" class="form-control" id="email" 
-        aria-describedby="user"  name="email">
+        aria-describedby="user"  name="email" required>
 
         <label for="password">Senha</label>
         <input type="password" class="form-control" id="password" 
-        aria-describedby="user"  name="password">
+        aria-describedby="user"  name="password" required>
 
         <label for="sexo">Sexo</label><br>
-        <input type="radio" name="sexo" value="Masculino"> Masculino <br>
+        <input type="radio" name="sexo" value="Masculino" checked> Masculino <br>
         <input type="radio" name="sexo" value="Feminino" > Feminino  <br>
 
         <label for="data_nascimento">Data de Nascimento</label>
         <input type="date" class="form-control" id="data_nascimento" 
-        aria-describedby="teacher"  name="data_nascimento">
+        aria-describedby="teacher"  name="data_nascimento" required>
 
         <label for="cpf">CPF</label>
         <input type="text" class="form-control" id="cpf" 
         aria-describedby="teacher"  name="cpf"
-        placeholder="XXX.XXX.XXX-XX" onkeypress="formatar_mascara(this,'###.###.###-##')">
+        placeholder="XXX.XXX.XXX-XX" onkeypress="formatar_mascara(this,'###.###.###-##')" required>
 
         <label for="telefone">Telefone</label>
         <input type="text" class="form-control" id="telefone" 
         aria-describedby="teacher"  name="telefone"
-        placeholder="XX-XXXXX-XXXX" onkeypress="formatar_mascara(this,'##-#####-####')">
+        placeholder="DDD+NÚMERO" required>
 
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>

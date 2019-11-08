@@ -4,13 +4,19 @@
 
 @section('content')
 
-<div>
-    <a id="tipo" class="btn btn-primary active" style="margin-bottom: 0.5rem;" href="{{ route('users.create') }}">    
-        Adicionar
-        <!-- No controller eu retorno uma janela peguntando se é Aluno, Professor ou Técnico. Após selecionar eu redireciono para
-        create.blade.php deste tipo de usuário especifico (aluno, professor ou tecnico) -->
-    </a>
-</div>
+<form method="GET" action="{{ route('users.create') }}">
+    <table class="table table-striped">
+        @csrf
+        <thead>
+            <tr>
+                <th><button type="submit" class="btn btn-primary active">Adicionar</button></th>
+                <th><input type="radio" name="tipo" value="aluno" checked> Aluno</th>
+                <th><input type="radio" name="tipo" value="professor" > Professor</th>
+                <th><input type="radio" name="tipo" value="tecnico"   > Técnico</th>
+            </tr>
+        </thead>
+    </table>
+</form>
     
 <div>
 
@@ -21,8 +27,8 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Ações</th>
             </tr>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
             @foreach ($users as $user)
                 <tr>
                     <th scope="row">{{  $user->id }}</th>
@@ -56,12 +62,8 @@
                     </td>
                 </tr>
             @endforeach
-
-            
-            
-            
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </div>
 
 

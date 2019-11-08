@@ -27,11 +27,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()              //***************FAZER*****************
+    public function create(Request $request)
     {
-        //$apps = app::all();
-        //return view('users.create', compact(['apps']));
-        // ou return redirect()->route('users.index');
+        if ($request->tipo == 'aluno') {
+            return redirect()->route('students.create');
+        }
+        if ($request->tipo == 'professor') {
+            return redirect()->route('teachers.create');
+        }
+        if ($request->tipo == 'tecnico') {
+            return redirect()->route('technicians.create');
+        }
     }
 
     /**

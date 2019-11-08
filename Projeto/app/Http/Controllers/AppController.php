@@ -45,7 +45,6 @@ class AppController extends Controller
         $m->save();
 
         return redirect()->route('apps.index');
-
     
         $p->departamentos()->attach($request->departamentos);
         return redirect()->route('produtos.index');

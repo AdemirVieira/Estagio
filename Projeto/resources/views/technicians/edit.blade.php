@@ -21,11 +21,11 @@
         <label for="name">Nome</label>
         <input type="text" class="form-control" id="name" 
         aria-describedby="user"  name="name" value="{{ $user->name }}"
-        placeholder="Nome completo">
+        placeholder="Nome completo" required>
 
         <label for="email">E-mail</label>
         <input type="email" class="form-control" id="email" 
-        aria-describedby="user"  name="email" value="{{ $user->email }}">
+        aria-describedby="user"  name="email" value="{{ $user->email }}" required>
 
         <label for="password">Senha</label>
         <input type="password" class="form-control" id="password" 
@@ -42,17 +42,17 @@
         
         <label for="data_nascimento">Data de Nascimento</label>
         <input type="date" class="form-control" id="data_nascimento" 
-        aria-describedby="technician"  name="data_nascimento" value="{{ $technician->data_nascimento }}">
+        aria-describedby="technician"  name="data_nascimento" value="{{ $technician->data_nascimento }}" required>
 
         <label for="cpf">CPF</label>
         <input type="text" class="form-control" id="cpf" 
         aria-describedby="technician"  name="cpf" value="{{ $technician->cpf }}"
-        placeholder="XXX.XXX.XXX-XX" onkeypress="formatar_mascara(this,'###.###.###-##')">
+        placeholder="XXX.XXX.XXX-XX" onkeypress="formatar_mascara(this,'###.###.###-##')" required>
 
         <label for="telefone">Telefone</label>
         <input type="text" class="form-control" id="telefone" 
         aria-describedby="technician"  name="telefone" value="{{ $technician->telefone }}"
-        placeholder="XX-XXXXX-XXXX" onkeypress="formatar_mascara(this,'##-#####-####')">
+        placeholder="DDD+NÚMERO" required>
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
