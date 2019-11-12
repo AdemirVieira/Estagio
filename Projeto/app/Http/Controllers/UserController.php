@@ -62,20 +62,22 @@ class UserController extends Controller
         $students = Student::all();
         $teachers = Teacher::all();
         $technicians = Technician::all();
+        $user->load('apps');
+        $apps = $user->apps;
 
         foreach($students as $student){
             if($student->user_id == $user->id){
-                return view('students.show', compact(['student','user']));
+                return view('students.show', compact(['student','user','apps']));
             }
         }
         foreach($teachers as $teacher){
             if($teacher->user_id == $user->id){
-                return view('teachers.show', compact(['teacher','user']));
+                return view('teachers.show', compact(['teacher','user','apps']));
             }
         }
         foreach($technicians as $technician){
             if($technician->user_id == $user->id){
-                return view('technicians.show', compact(['technician','user']));
+                return view('technicians.show', compact(['technician','user','apps']));
             }
         }
     }

@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title','Detalhes da Aplicação')
+@section('title','Detalhes da aplicação')
 
 @section('content')
     <div class="form-group">

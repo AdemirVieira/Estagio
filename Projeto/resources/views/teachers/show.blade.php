@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title','Professores')
+@section('title','Detalhes do professor')
 
 @section('content')
     <div class="form-group">
@@ -32,5 +32,13 @@
         <label for="telefone">Telefone</label>
         <input type="text" class="form-control" id="telefone" 
         aria-describedby="teacher"  name="telefone" value="{{ $teacher->telefone }}" disabled>
+
+        <label for="Aplicações">Aplicações</label>
+        @forelse ($apps as $app)
+            <input type="text" class="form-control" style="margin-bottom: 0.5em" id="aplicacoes" aria-describedby="apps"  name="aplicacoes" disabled value="{{ $app->name }}">
+        @empty
+            <input type="text" class="form-control" style="margin-bottom: 0.5em" id="aplicacoes" aria-describedby="apps"  name="aplicacoes" disabled value="Nenhuma">
+        @endforelse
+
     </div>
 @endsection

@@ -107,4 +107,20 @@ class AppController extends Controller
         return redirect()->route('apps.index');
         
     }
+
+    /* Selecionar aplicações */
+    public function select(User $user)
+    {
+        $apps = app::all();
+        $user->load('apps');
+        $appsuser = $user->apps;
+        return view('apps.assign', compact(['user','apps','appsuser']));
+    }
+
+    /* Atribuir aplicações aos usuários */
+    public function assign(Request $request, $id)
+    {
+        echo $request->aplicacoes;
+
+    }
 }

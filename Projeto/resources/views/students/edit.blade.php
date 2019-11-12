@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title','Alunos')
+@section('title','Editar aluno')
 
 @section('content')
 
@@ -46,13 +46,11 @@
 
         <label for="cpf">CPF</label>
         <input type="text" class="form-control" id="cpf" 
-        aria-describedby="student"  name="cpf" value="{{ $student->cpf }}"
-        placeholder="XXX.XXX.XXX-XX" onkeypress="formatar_mascara(this,'###.###.###-##')" required>
+        aria-describedby="student"  name="cpf" value="{{ $student->cpf }}" onkeypress="formatar_mascara(this,'###.###.###-##')" required>
 
         <label for="telefone">Telefone</label>
         <input type="text" class="form-control" id="telefone" 
-        aria-describedby="student"  name="telefone" value="{{ $student->telefone }}"
-        placeholder="DDD+NÚMERO" required>
+        aria-describedby="student"  name="telefone" value="{{ $student->telefone }}" required>
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>

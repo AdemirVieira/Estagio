@@ -65,7 +65,9 @@ class TeacherController extends Controller
     public function show(teacher $teacher)
     {   
         $user = user::find($teacher->user_id);
-        return view('teachers.show', compact(['teacher','user']));
+        $user->load('apps');
+        $apps = $user->apps;
+        return view('teachers.show', compact(['teacher','user','apps']));
     }
 
     /**

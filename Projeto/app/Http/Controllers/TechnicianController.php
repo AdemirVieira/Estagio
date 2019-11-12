@@ -65,7 +65,9 @@ class TechnicianController extends Controller
     public function show(technician $technician)
     {   
         $user = user::find($technician->user_id);
-        return view('technicians.show', compact(['technician','user']));
+        $user->load('apps');
+        $apps = $user->apps;
+        return view('technicians.show', compact(['technician','user','apps']));
     }
 
     /**

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Student;
 use App\User;
+use App\App;
+Use App\AppUsers;
 
 class StudentController extends Controller
 {
@@ -64,8 +66,11 @@ class StudentController extends Controller
      */
     public function show(student $student)
     {   
-        $user = user::find($student->user_id);
-        return view('students.show', compact(['student','user']));
+        $user = User::find($student->user_id);
+        $user->load('apps');
+        $apps = $user->apps;
+        //dd($apps);
+        return view('students.show', compact(['student','user','apps']));
     }
 
     /**

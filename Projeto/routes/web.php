@@ -19,6 +19,10 @@ Route::resource('users', 'UserController');
 
 Route::resource('apps', 'AppController');
 
+Route::get('apps/user/{user}', 'AppController@select')->name('apps.select');
+
+Route::post('apps/user/{user}', 'AppController@assign')->name('apps.assign');
+
 Route::resource('teachers', 'TeacherController');
 
 Route::resource('students', 'StudentController');

@@ -48,14 +48,13 @@
                             </button>
 
                             <a class="btn btn-sm btn-info active" href="{{route('users.show', $user->id)}}">
-                                Detalhes 
-                                <!-- Quando clicar nesse botão redirecionar para a show.blade.php deste tipo de usuário especifico (aluno, professor ou tecnico) e
-                                na show dele exibir a aplicação que ele esta vinculado (tenho que criar essa parte na show de cada usuario) -->
+                                Detalhes
                             </a> 
 
                             
-                            <a class="btn btn-sm btn-info active" href="#">
-                                Gerenciar<!-- Botão para atribuir aplicações e modificar papeis -->
+                        <a class="btn btn-sm btn-info active" href="{{route('apps.select', $user->id)}}">
+                                Atribuir
+                                <!-- Botão para atribuir aplicações -->
                             </a>     
 
                         </form>

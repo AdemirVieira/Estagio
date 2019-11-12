@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title','Editar Aplicação')
+@section('title','Editar aplicação')
 
 @section('content')
 <form method="POST" action="{{ route('apps.update', $app->id) }}">
