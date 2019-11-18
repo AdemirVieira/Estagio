@@ -4,8 +4,14 @@
 
 @section('content')
 
-    <form action="{{ route('apps.assign', $user->id) }}" method="POST">
-        @csrf
+@php
+$apps_ids = array_map( 
+    function($app) {
+        return $app['id'];
+    }, $appsuser->toArray());
+@endphp
+
+
 
         <h5>Usuário: {{ $user->name }}</h5>
 
@@ -17,29 +23,30 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($appsuser as $app)
+                @foreach ($apps as $a)
                     <tr>
                         <td>
-                            <input type="checkbox" id="aplicacoes" aria-describedby="apps"  name="aplicacoes" value="{{ $app->id }}" checked>
-                            <label for="aplicacoes" style="margin-left: 0.3em">{{ $app->name }}</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{$a->id}}" 
+                                    @if(in_array($a->id, $apps_ids)) checked @endif
+                                    name="apps[]" id="input_{{$a->id}}" form="form_apps" >
+                                <label class="form-check-label" for="input_{{$a->id}}">
+                                    {{$a->name}}
+                                </label>
+                            </div>
+
                         </td>
-                        <td>{{ $app->description }}</td>
+                        <td>{{ $a->description }}</td>
                     </tr>
-                @endforeach 
-                @foreach ($apps as $a)
-                    @if ($a->id != $app->id)
-                        <tr>
-                            <td>
-                                <input type="checkbox" id="aplicacoes" aria-describedby="apps"  name="aplicacoes" value="{{ $a->id }}">
-                                <label for="aplicacoes" style="margin-left: 0.3em">{{ $a->name }}</label>
-                            </td>
-                            <td>{{ $a->description }}</td>
-                        </tr>
-                    @endif   
                 @endforeach
             </tbody>
         </table>
-        <button type="submit" class="btn btn-primary active" style="margin-bottom: 0.5rem;">Atribuir</button>
-    </form>
+        
+        <form action="{{ route('apps.assign', $user->id) }}" method="POST" id="form_apps" >
+            @csrf
+            <button type="submit" class="btn btn-sm btn-outline-primary">
+                Salvar
+            </button>
+        </form>        
     
 @endsection

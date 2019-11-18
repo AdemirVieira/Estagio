@@ -114,13 +114,15 @@ class AppController extends Controller
         $apps = app::all();
         $user->load('apps');
         $appsuser = $user->apps;
+        //dd($user);
+        //dd($apps,$user, $appsuser);
         return view('apps.assign', compact(['user','apps','appsuser']));
     }
 
     /* Atribuir aplicações aos usuários */
-    public function assign(Request $request, $id)
+    public function assign(Request $request, User $user)
     {
-        echo $request->aplicacoes;
-
+        $user->apps()->sync($request->apps);
+        return redirect()->route('users.index');
     }
 }
